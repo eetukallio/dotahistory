@@ -6,9 +6,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SearchpageComponent } from './searchpage/searchpage.component';
 
 
-const routes = [
+const routes: Routes = [
   {path: '', component: SearchpageComponent},
-  {path: 'player/:id', component: HomepageComponent }
+  {path: 'player/:account_id', component: HomepageComponent }
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 <div class="playerInfoContainer"><img src="{{player.profile.avatarfull}}" alt="Avatar" class="avatar" /><p class='playerName'>{{player.profile.personaname}}</p></div>
-<table mat-table #table [dataSource]="dataSource">
+<div [hidden]='!loading' class="row justify-content-center loader"></div>
+<table [hidden]='loading' mat-table #table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="match_id">

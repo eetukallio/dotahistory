@@ -6,10 +6,15 @@
 </div>
 <div [hidden]='!loading' class="row justify-content-center loader"></div>
 <div class="container">
-  <mat-card *ngFor='let player of players'>
-    <img class="avatar" src="{{player.avatarfull}}" alt="avatar" />
-    <p>{{player.personaname}}</p>
-  </mat-card>
+  <a routerLink="/player/{{player.account_id}}" *ngFor='let player of players'>
+    <mat-card >
+      <div class="cardData">
+        <img class="avatar" src="{{player.avatarfull}}" alt="avatar" />
+        <p>{{player.personaname}}</p>
+      </div>
+      
+    </mat-card>
+  </a>
     
     
   </div>

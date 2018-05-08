@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material';
 import {ApiService} from '../api.service';
 import { Game } from '../Interfaces/game';
@@ -16,7 +18,7 @@ export class HomepageComponent implements OnInit {
   dataSource = new MatTableDataSource(GAMES);
   recentMatches: Game[];
   heroes: Hero[];
-  playerId = 31918716;
+  playerId = 0;
   player: Player = {
     profile: {
       account_id: 0,
@@ -25,12 +27,17 @@ export class HomepageComponent implements OnInit {
       personaname: 'No Player'
     }
   };
+  loading = true;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService) { }
 
   ngOnInit() {
-    this.getRecentMatches();
-    this.getPlayer();
+    this.route.params.subscribe( (params: Params) => {
+      this.playerId = params['account_id'];
+      this.getPlayer();
+    });
   }
 
   getHeroes(): void {
@@ -42,12 +49,14 @@ export class HomepageComponent implements OnInit {
   getRecentMatches(): void {
     this.apiService.getRecentMathces(this.playerId).subscribe(games =>  {
       this.dataSource = new MatTableDataSource(games);
-
+      this.loading = false;
     });
   }
   getPlayer(): void {
+
     this.apiService.getPlayer(this.playerId).subscribe(player => {
       this.player = player;
+      this.getRecentMatches();
     });
   }
 

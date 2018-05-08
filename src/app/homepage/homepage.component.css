@@ -35,3 +35,20 @@ table {
   align-content: center;
   height: 60px
 }
+
+.loader {
+  border: 16px solid black; /* Light grey */
+  border-top: 16px solid cyan; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.5s linear infinite;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
