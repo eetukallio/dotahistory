@@ -1,0 +1,50 @@
+input[type=text] {
+  border: none;
+  font-size: 30px;
+}
+
+#searchBar {
+  margin-top: 20px;
+}
+
+mat-icon {
+  font-size: 40px;
+  margin-left: -45px;
+  margin-right: 40px;
+  margin-top: 5px;
+}
+
+.container {
+  margin-top: 10px;
+}
+
+button {
+  background-color: cyan;
+  opacity: .7;
+  color: black;
+}
+
+.loader {
+  border: 16px solid black; /* Light grey */
+  border-top: 16px solid cyan; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.5s linear infinite;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin: 5px;
+}

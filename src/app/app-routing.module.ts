@@ -3,10 +3,12 @@ import { RouterModule , Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { SearchpageComponent } from './searchpage/searchpage.component';
 
 
 const routes = [
-  {path: '', component: HomepageComponent}
+  {path: '', component: SearchpageComponent},
+  {path: 'player/:id', component: HomepageComponent }
 ];
 
 @NgModule({

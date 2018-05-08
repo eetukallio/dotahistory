@@ -1,0 +1,16 @@
+<div class='container-fluid' id="searchBar">
+<div class="row justify-content-center">
+  <input type="text" placeholder="Player name" [(ngModel)]="searchValue" name="name">
+  <mat-icon>search</mat-icon>
+  <button (click)='search()' mat-button color='primary'>SEARCH</button>
+</div>
+<div [hidden]='!loading' class="row justify-content-center loader"></div>
+<div class="container">
+  <mat-card *ngFor='let player of players'>
+    <img class="avatar" src="{{player.avatarfull}}" alt="avatar" />
+    <p>{{player.personaname}}</p>
+  </mat-card>
+    
+    
+  </div>
+</div>

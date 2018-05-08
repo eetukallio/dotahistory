@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Game } from './Interfaces/game';
 import { Hero } from './Interfaces/hero';
 import { Player } from './Interfaces/player';
@@ -14,6 +14,7 @@ export class ApiService {
   heroImageUrl = 'http://cdn.dota2.com/apps/dota2/images/heroes/';
   heroUrl = 'https://api.opendota.com/api/heroes';
   playerUrl = 'https://api.opendota.com/api/players/';
+  searchUrl = 'https://api.opendota.com/api/search?q=';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,6 +28,10 @@ export class ApiService {
 
   getPlayer(id): Observable<Player> {
     return this.httpClient.get<Player>(this.playerUrl + id);
+  }
+
+  searchPlayers(name): Observable<Player[]> {
+    return this.httpClient.get<Player[]>(this.searchUrl + name);
   }
 
 }
