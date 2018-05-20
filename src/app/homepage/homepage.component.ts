@@ -14,7 +14,7 @@ import { Player } from '../Interfaces/player';
 })
 export class HomepageComponent implements OnInit {
 
-  displayedColumns = ['match_id', 'hero_id', 'duration', 'radiant_win'];
+  displayedColumns = ['match_id', 'hero_id', 'player_slot', 'duration', 'radiant_win'];
   dataSource = new MatTableDataSource(GAMES);
   recentMatches: Game[];
   heroes: Hero[];
@@ -43,11 +43,15 @@ export class HomepageComponent implements OnInit {
   getHeroes(): void {
     this.apiService.getHeroes().subscribe(heroes => {
       this.heroes = heroes;
+      this.getRecentMatches();
     });
   }
 
   getRecentMatches(): void {
     this.apiService.getRecentMathces(this.playerId).subscribe(games =>  {
+      games.forEach(game => {
+        game.hero = this.heroes.find(hero => hero.id === game.hero_id);
+      });
       this.dataSource = new MatTableDataSource(games);
       this.loading = false;
     });
@@ -56,12 +60,23 @@ export class HomepageComponent implements OnInit {
 
     this.apiService.getPlayer(this.playerId).subscribe(player => {
       this.player = player;
-      this.getRecentMatches();
+      this.getHeroes();
     });
   }
 
 }
 
 const GAMES: Game[] = [
-  {match_id: 1, hero_id: 1, duration: 0, radiant_win: false, game_mode: 1, lobby_type: 1, start_time: 0, kills: 1, assists: 0, deaths: 0},
+  {match_id: 1,
+    hero_id: 1,
+    duration: 0,
+    radiant_win: false,
+    game_mode: 1,
+    lobby_type: 1,
+    start_time: 0,
+    kills: 1,
+    assists: 0,
+    deaths: 0,
+    player_slot: 1,
+    hero: {name: 'N/A', localized_name: 'N/A', id: 0}},
 ];
